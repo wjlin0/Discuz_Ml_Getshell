@@ -189,8 +189,8 @@ class Cms:
 
 if __name__ == '__main__':
     try:
-        if len(sys.argv) <= 1:
-            sys.exit("Need >=2 argv,please run python Getshell.py --help")
+        if args.url is None and args.file is None:
+            sys.exit("--url 或者 --file 必须需要一个")
         print_f()
         get_var()
         if args.url is None:
