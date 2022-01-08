@@ -189,10 +189,12 @@ class Cms:
 
 if __name__ == '__main__':
     try:
-        if args.url is None and args.file is None:
-            sys.exit("--url 或者 --file 必须需要一个")
+
         print_f()
         get_var()
+        if args.url is None and args.file is None:
+            sys.exit("--url 或者 --file 必须需要一个")
+
         if args.url is None:
             if args.file is not None:
                 with open(args.file, "r")as f:
