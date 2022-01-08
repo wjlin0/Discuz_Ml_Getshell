@@ -188,21 +188,26 @@ class Cms:
 
 
 if __name__ == '__main__':
-    print_f()
-    get_var()
-    if args.url is None:
-        if args.file is not None:
-            with open(args.file, "r")as f:
-                ips = f.readlines()
-        for ip in ips:
-            ip = ip.strip("\n")
-            t = threading.Thread(target=Runs, args=(ip,))
-            threads.append(t)
-        for t in threads:
-            t.setDaemon(True)
-            t.start()
-        for t in threads:
-            t.join()
-    elif args.url is not None:
-        url = args.url
-        Runs(url)
+    try:
+        if len(sys.argv) <= 1:
+            sys.exit("Need >=2 argv,please run python Getshell.py --help")
+        print_f()
+        get_var()
+        if args.url is None:
+            if args.file is not None:
+                with open(args.file, "r")as f:
+                    ips = f.readlines()
+            for ip in ips:
+                ip = ip.strip("\n")
+                t = threading.Thread(target=Runs, args=(ip,))
+                threads.append(t)
+            for t in threads:
+                t.setDaemon(True)
+                t.start()
+            for t in threads:
+                t.join()
+        elif args.url is not None:
+            url = args.url
+            Runs(url)
+    except Exception as e:
+        print("erro:", e)
